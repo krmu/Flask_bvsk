@@ -1,0 +1,14 @@
+{% extends 'izkartojums.html' %}
+
+{% block saturs %}
+
+<p>Kategorijas: {{atbilde['categories']}}</p>
+<img src="{{atbilde['icon_url']}}">
+ 
+
+<div class="alert alert-light" role="alert">
+    {{atbilde['value']}}
+</div>
+<a href="{{atbilde['url']}}"> Saite </a>
+
+{% endblock %}
