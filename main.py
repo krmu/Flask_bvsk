@@ -1,5 +1,6 @@
-from flask import Flask,render_template,request
+from flask import Flask, jsonify,render_template,request
 import requests
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -61,5 +62,21 @@ def universitates():
             if len(dati) == 0:
                 kluda = "Neko neatrada"
     return render_template('universitates.html',kluda=kluda,dati=dati)
+
+
+@app.route("/api/sodienas_datums_laiks",methods=['POST'])
+def sodienas_datums_laiks_api():
+    now = datetime.now()
+    datums = now.strftime("%d.%m.%Y")
+    laiks = now.strftime("%H:%M:%S")
+    
+    atbilde = {"datums":datums,"laiks":laiks}
+    
+    return jsonify(atbilde)
+
+@app.route("/sodienas_datums_laiks",methods=['GET'])
+def sodienas_datums_laiks():
+    
+    return render_template('sodienas_datums_laiks.html') 
 
 app.run(debug=True,host='0.0.0.0',port=80)

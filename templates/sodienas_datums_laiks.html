@@ -1,0 +1,19 @@
+{% extends 'izkartojums.html' %}
+
+{% block saturs %}
+
+<h1>Šodienas datums un laiks API piemērs</h1>
+
+<p id="atbile_no_api"> Šeit tiks ielādēta atbilde no FLASK API ceļa</p>
+
+<button onclick="laiks()" class="btn btn-warning">Iegūt laiku no servera</button>
+
+
+<script>
+function laiks() {
+    $.post("{{ url_for('sodienas_datums_laiks_api') }}", function(data){
+        $("#atbile_no_api").html("Šodienas datums ir: " + data.datums + " un laiks ir: " + data.laiks);
+    });
+}
+</script>
+{% endblock %}
